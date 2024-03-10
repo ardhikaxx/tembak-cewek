@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tolak!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="container-tolak">
+        <h1>Kirim pesan ke whatsapp</h1>
+        <div class="form-tolak">
+            <input id="pesanInput" type="text" placeholder="Ketik pesan untuk saya">
+            <button class="btn-primary custom-btn" onclick="kirimPesan()">Kirim</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        function kirimPesan() {
+            var pesan = document.getElementById("pesanInput").value;
+            if (pesan.trim() === "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Harap mengisi pesan!',
+                });
+            } else {
+                var nomorWhatsApp = '+6285933648537';
+                var linkWhatsApp = 'https://wa.me/6285933648537?text=' + encodeURIComponent(pesan);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Pesan Terkirim!',
+                    text: 'Pesan Anda telah terkirim. Klik OK untuk membuka WhatsApp.',
+                    confirmButtonText: 'OK',
+                    showCancelButton: true,
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = linkWhatsApp;
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
