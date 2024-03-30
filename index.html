@@ -13,36 +13,30 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
     <script>
         function tanyaPacar() {
             Swal.fire({
-                title: 'Apakah kamu mau jadi pacar aku?',
+                title: '<span style="font-size: 20px;">Kamu mau nggak jadi pacar aku?</span>',
                 icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Iya',
-                cancelButtonText: 'Tidak'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: 'Selamat!',
-                        text: 'Kamu sekarang pacar aku!',
-                        icon: 'success'
-                    }).then(() => {
-                        window.location.href = './html/bunga.html';
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'Hahaha...',
-                        text: 'coba lagi lain kali!',
-                        icon: 'error'
-                    }).then(() => {
-                        window.location.href = './html/tolak.html';
-                    });
+                iconColor: '#007BFF',
+                showCancelButton: false,
+                confirmButtonText: 'Kirim',
+                confirmButtonColor: '#007BFF',
+                html: `
+                    <input type="text" id="pesan" class="swal2-input" placeholder="Ketik pesan...">
+                `,
+                scrollbarPadding: false,
+                preConfirm: () => {
+                    kirimPesan();
                 }
-            });
+            })
+        }
+
+        function kirimPesan() {
+            var pesan = document.getElementById('pesan').value;
+            var linkWhatsApp = 'https://wa.me/6285933648537?text=' + encodeURIComponent(pesan);
+            window.location.href = linkWhatsApp;
         }
     </script>
 </body>
