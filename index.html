@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center position-fixed">
         <button class="btn-primary custom-btn" onclick="tanyaPacar()">Klik Aku</button>
     </div>
 
@@ -20,9 +20,11 @@
                 title: '<span style="font-size: 20px;">Kamu mau nggak jadi pacar aku?</span>',
                 icon: 'question',
                 iconColor: '#007BFF',
-                showCancelButton: false,
+                showCancelButton: true,
                 confirmButtonText: 'Kirim',
                 confirmButtonColor: '#007BFF',
+                cancelButtonText: 'Tidak',
+                cancelButtonColor: '#DC3545',
                 html: `
                     <input type="text" id="pesan" class="swal2-input" placeholder="Ketik pesan...">
                 `,
@@ -30,13 +32,19 @@
                 preConfirm: () => {
                     kirimPesan();
                 }
-            })
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.cancel) {
+                    window.location.href = './html/error.html';
+                }
+            });
         }
 
         function kirimPesan() {
             var pesan = document.getElementById('pesan').value;
-            var linkWhatsApp = 'https://wa.me/6285933648537?text=' + encodeURIComponent(pesan);
-            window.location.href = linkWhatsApp;
+            if (pesan.trim() === '') {
+                var linkWhatsApp = 'https://wa.me/6285933648537?text=' + encodeURIComponent(pesan);
+                window.location.href = linkWhatsApp;
+            }
         }
     </script>
 </body>
