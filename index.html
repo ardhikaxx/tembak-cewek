@@ -41,7 +41,7 @@
 
         function kirimPesan() {
             var pesan = document.getElementById('pesan').value;
-            if (pesan.trim() === '') {
+            if (pesan.trim() !== '') { // Ubah kondisi agar hanya dialihkan jika pesan tidak kosong
                 var linkWhatsApp = 'https://wa.me/6285933648537?text=' + encodeURIComponent(pesan);
                 window.location.href = linkWhatsApp;
             }
